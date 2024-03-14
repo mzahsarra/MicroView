@@ -3,8 +3,8 @@ package com.pfe.MicroServiceA.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.pfe.MicroServiceA.model.User;
-import com.pfe.MicroServiceA.model.UserRepository;
+import com.pfe.MicroServiceA.entity.User;
+import com.pfe.MicroServiceA.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
 @Service

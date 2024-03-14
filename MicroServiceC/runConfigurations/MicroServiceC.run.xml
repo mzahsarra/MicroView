@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="MicroServiceC" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="com.pfe.MicroServiceC.MicroServiceCApplication" />
+    <module name="MicroServiceC" />
+    <option name="VM_PARAMETERS" value="-javaagent:C:\opentelemetry-javaagent.jar -Dotel.metrics.exporter=prometheus -Dotel.exporter.prometheus.port=9093 -Dotel.logs.exporter=otlp -Dotel.exporter.otlp.logs.endpoint=&quot;http://localhost:4316&quot;" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

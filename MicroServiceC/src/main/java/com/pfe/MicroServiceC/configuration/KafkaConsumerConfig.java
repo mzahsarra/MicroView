@@ -1,6 +1,6 @@
 package com.pfe.MicroServiceC.configuration;
 
-import io.opentelemetry.exporter.otlp.http.trace.OtlpHttpSpanExporter;
+//import io.opentelemetry.exporter.otlp.http.trace.OtlpHttpSpanExporter;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,9 +38,7 @@ public class KafkaConsumerConfig {
         ConcurrentKafkaListenerContainerFactory<String, String> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
 
-        factory.getContainerProperties().setObservationEnabled(true);
-
-        factory.setConsumerFactory(consumerFactory());
+       factory.setConsumerFactory(consumerFactory());
 
         return factory;
     }

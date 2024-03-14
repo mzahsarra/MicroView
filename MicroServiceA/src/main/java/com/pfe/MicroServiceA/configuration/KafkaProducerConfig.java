@@ -1,6 +1,5 @@
 package com.pfe.MicroServiceA.configuration;
 
-import io.opentelemetry.exporter.otlp.http.trace.OtlpHttpSpanExporter;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +19,7 @@ public class KafkaProducerConfig {
 
         KafkaTemplate<String, String> t = new KafkaTemplate<>(producerFactory());
 
-        t.setObservationEnabled(true);
+        //t.setObservationEnabled(true);
 
         return t;
     }
