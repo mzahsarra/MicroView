@@ -1,5 +1,6 @@
 package com.pfe.MicroServiceA.configuration;
 
+import io.opentelemetry.exporter.otlp.http.trace.OtlpHttpSpanExporter;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +10,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import java.util.HashMap;
 import java.util.Map;
+
 @Configuration
 public class KafkaProducerConfig {
     @Value(value = "${spring.kafka.bootstrap-servers}")
@@ -34,5 +36,7 @@ public class KafkaProducerConfig {
 
         return new DefaultKafkaProducerFactory<>(configProps);
     }
+
+
 }
 
