@@ -9,3 +9,11 @@ public class MicroServiceAApplication {
 		SpringApplication.run(MicroServiceAApplication.class, args);
 	}
 }
+
+
+
+
+
+
+
+

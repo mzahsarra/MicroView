@@ -1,5 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="MicroServiceC" type="Application" factoryName="Application">
+    <envs>
+      <env name="KAFKA_GROUP_ID" value="group_id_MS_C" />
+      <env name="KAFKA_URL" value="localhost:29092" />
+      <env name="PORT" value="8082" />
+      <env name="SERVICEB_URL" value="http://localhost:8081" />
+    </envs>
     <option name="MAIN_CLASS_NAME" value="com.pfe.MicroServiceC.MicroServiceCApplication" />
     <module name="MicroServiceC" />
     <option name="VM_PARAMETERS" value="-javaagent:C:\opentelemetry-javaagent.jar -Dotel.metrics.exporter=prometheus -Dotel.exporter.prometheus.port=9093 -Dotel.logs.exporter=otlp -Dotel.exporter.otlp.logs.endpoint=&quot;http://localhost:4316&quot;" />

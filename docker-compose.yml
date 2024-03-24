@@ -10,6 +10,8 @@ services:
       - "3110:3100"  # Tempo as grafana data source
       #- "9411:9411" # zipkin
       - "4317:4317" #otlp grpc
+    networks:
+      - microview 
 
   collector:
     container_name: collector
@@ -23,12 +25,16 @@ services:
       - "4316:4317" # OTLP gRPC receiver
     depends_on:
       - loki
+    networks:
+      - microview 
 
   loki:
     image: grafana/loki:main
     command: [ "-config.file=/etc/loki/local-config.yaml" ]
     ports:
       - "3100:3100"
+    networks:
+      - microview 
 
   prometheus:
     image: prom/prometheus:v2.46.0
@@ -39,6 +45,8 @@ services:
       - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
     ports:
       - "9090:9090"
+    networks:
+      - microview 
 
   grafana:
     image: grafana/grafana:10.1.0
@@ -50,3 +58,44 @@ services:
       - GF_AUTH_DISABLE_LOGIN_FORM=true
     ports:
       - "3000:3000"
+    networks:
+      - microview 
+
+  msa:
+    image: microservicea:4
+    environment:
+      - KAFKA_URL=zookeeper_kafka-kafka-1:29092
+      - POSTGRES_URL=postgres-postgres-1:5432
+      - PORT=8080
+    ports:
+      - "8080:8080" 
+    networks:
+      - microview  
+  msb:
+    image: microserviceb:1
+    environment:
+      - KAFKA_URL=zookeeper_kafka-kafka-1:29092
+      - POSTGRES_URL=postgres-postgres-1:5432
+      - SERVICEA_URL=microview-v3-msa-1:8080
+      - KAFKA_GROUP_ID=group_id_MS_B
+      - PORT=8081
+    ports:
+      - "8081:8081" 
+    networks:
+      - microview  
+  msc:
+    image: microservicec:1
+    environment:
+      - KAFKA_URL=zookeeper_kafka-kafka-1:29092
+      - POSTGRES_URL=postgres-postgres-1:5432
+      - KAFKA_GROUP_ID=group_id_MS_C
+      - SERVICEB_URL=microview-v3-msb-1:8081
+      - PORT=8082
+    ports:
+      - "8082:8082" 
+    networks:
+      - microview  
+
+networks:
+  microview:
+    name: microview

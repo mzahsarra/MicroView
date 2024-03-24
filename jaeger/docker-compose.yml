@@ -7,3 +7,9 @@ services:
       - 16686:16686
     environment:
       - COLLECTOR_OTLP_ENABLED=true
+    networks:
+      - microview  
+    
+networks:
+  microview:
+    name: microview
